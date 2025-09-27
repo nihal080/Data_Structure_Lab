@@ -32,18 +32,25 @@ void pop()
 
 void display()
 {
-	printf("STACK elements: ");
-	for (int i = TOP; i >= 0; i--)
+	if(TOP>=0) 
 	{
+		printf("STACK elements: ");
+		for (int i = TOP; i >= 0; i--)
+		{
 		printf("%d ", S[i]);
+		}
+		printf("\n");
 	}
-	printf("\n");
+	else
+	{
+                printf("Stack is Empty");
+        }
 }
 
 int main()
 {
-	int choice, element;
-    	while (1)
+	int choice, element, n=0;
+    	while (n!=1)
     	{
         	printf("\nSTACK OPERATIONS\n");
         	printf("1. PUSH\n");
@@ -71,7 +78,8 @@ int main()
 
 		        case 4:
                 	printf("EXITING....\n");
-			return 0;
+			n++;
+			break;
 
 	                default:
                         printf("Invalid choice! Please select between 1-4.\n");
