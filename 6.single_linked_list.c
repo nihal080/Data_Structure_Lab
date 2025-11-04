@@ -120,71 +120,80 @@ void insertAtAny(int key, int item)
 
 void deleteAtFront() 
 {
-    if (header == NULL) 
-    {
-        printf("List is empty, nothing to delete.\n");
-        return;
-    }
-    struct node *temp = header;
-    printf("Node with value %d deleted from the front.\n", temp->data);
-    header = header->link;
-    free(temp);
+	if (header == NULL) 
+        {
+    		printf("List is empty, nothing to delete.\n");
+        	return;
+    	}
+    	
+    	struct node *temp = header;
+    	printf("Node with value %d deleted from the front.\n", temp->data);
+    	header = header->link;
+    	free(temp);
 }
 
 
-void deleteAtEnd() {
-    if (header == NULL) {
-        printf("List is empty, nothing to delete.\n");
-        return;
-    }
+void deleteAtEnd() 
+{
+	if (header == NULL) 
+	{
+        	printf("List is empty, nothing to delete.\n");
+        	return;
+        }
 
-    if (header->link == NULL) {
-        printf("Node with value %d deleted from the end.\n", header->data);
-        free(header);
-        header = NULL;
-        return;
-    }
+        if (header->link == NULL) 
+        {
+        	printf("Node with value %d deleted from the end.\n", header->data);
+        	free(header);
+        	header = NULL;
+        	return;
+        }
+        struct node *ptr = header;
+        struct node *ptr1 = header;
+	
+	while (ptr->link != NULL) 
+	{
+        	ptr1 = ptr;
+        	ptr = ptr->link;
+        }
 
-    struct node *ptr = header;
-    struct node *ptr1 = header;
-
-    while (ptr->link != NULL) {
-        ptr1 = ptr;
-        ptr = ptr->link;
-    }
-
-    printf("Node with value %d deleted from the end.\n", ptr->data);
-    ptr1->link = NULL;
-    free(ptr);
+    	printf("Node with value %d deleted from the end.\n", ptr->data);
+    	ptr1->link = NULL;
+    	free(ptr);
 }
 
-void deleteAtAny(int key) {
-    if (header == NULL) {
-        printf("List is empty. Cannot delete key %d.\n", key);
-        return;
-    }
+void deleteAtAny(int key) 
+{
+	if (header == NULL) 
+        {
+    		printf("List is empty. Cannot delete key %d.\n", key);
+        	return;
+        }
+        struct node *ptr = header;
+        struct node *prev = NULL;
 
-    struct node *ptr = header;
-    struct node *prev = NULL;
+        while (ptr != NULL && ptr->data != key) 
+        {
+        	prev = ptr;
+        	ptr = ptr->link;
+        }
 
-    while (ptr != NULL && ptr->data != key) {
-        prev = ptr;
-        ptr = ptr->link;
-    }
-
-    if (ptr == NULL) {
-        printf("Key %d not found, deletion not possible.\n", key);
-        return;
-    }
-
-    if (prev == NULL) {
-        header = ptr->link;
-    } else {
-        prev->link = ptr->link;
-    }
-
-    printf("Node with value %d deleted.\n", ptr->data);
-    free(ptr);
+        if (ptr == NULL) 
+        {
+        	printf("Key %d not found, deletion not possible.\n", key);
+        	return;
+        }
+        
+        if (prev == NULL) 
+        {
+        	header = ptr->link;
+        }
+        else 
+        {
+        	prev->link = ptr->link;
+        }
+        printf("Node with value %d deleted.\n", ptr->data);
+    	free(ptr);
 }
 
 
@@ -250,6 +259,5 @@ int main()
                                 printf("Invalid choice! Please try again.\n");
               }
 	}
-
 	return 0;
 }
