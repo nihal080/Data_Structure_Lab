@@ -196,6 +196,33 @@ void deleteAtAny(int key)
     	free(ptr);
 }
 
+void Search()
+{
+	int key, position = 1;
+        struct node *ptr = header;
+
+   	if (header == NULL)
+    	{
+    	        printf("The list is empty.\n");
+        	return;
+        }
+
+    	printf("Enter the element to search: ");
+    	scanf("%d", &key);
+
+    	while (ptr != NULL)
+    	{
+        	if (ptr->data == key)
+        	{
+            		printf("Element %d found at position %d in the list.\n", key, position);
+            		return;
+        	}
+        	ptr = ptr->link;
+        	position++;
+    	}
+    	printf("Element %d not found in the list.\n", key);
+}
+
 
 
 int main()
@@ -203,61 +230,70 @@ int main()
 	int choice, item, key;
 	while(1)
 	{
-	        printf("\n--- Linked List Operations ---\n");
-	        printf("1. Insert at Front\n");
-	        printf("2. Insert at Last\n");
-	        printf("3. Insert Before a Node\n");
-	        printf("4. Display List\n");
-       	        printf("5. Delete at Front\n");
-	        printf("6. Delete at Last\n");
-       	        printf("7. Delete at Any\n");
-	        printf("8. Exit\n");
-	        printf("Enter your choice: ");
-	        scanf("%d", &choice);
-	        switch(choice)
-	        {
-		        case 1:
-		                printf("Enter element to insert at front: ");
-		                scanf("%d", &item);
-		                insertAtFront(item);
-		                break;
+    		printf("\n--- Linked List Operations ---\n");
+    		printf("1. Insert at Front\n");
+    		printf("2. Insert at Last\n");
+    		printf("3. Insert Before a Node\n");
+    		printf("4. Display List\n");
+    		printf("5. Delete at Front\n");
+    		printf("6. Delete at Last\n");
+    		printf("7. Delete at Any\n");
+    		printf("8. Search for an Element\n"); // Added Search option
+    		printf("9. Exit\n");
+    	
+    		printf("Enter your choice: ");
+    		scanf("%d", &choice);
+    		switch(choice)
+    		{
+        		case 1:
+        			printf("Enter element to insert at front: ");
+            			scanf("%d", &item);
+            			insertAtFront(item);
+            			break;
 
-		        case 2:
-        		        printf("Enter element to insert at last: ");
-       			        scanf("%d", &item);
-                		insertAtLast(item);
-                		break;
+        		case 2:
+            			printf("Enter element to insert at last: ");
+            			scanf("%d", &item);
+            			insertAtLast(item);
+            			break;
 
-	                case 3:
-                                printf("Enter the key before which to insert: ");
+			case 3:
+            			printf("Enter the key before which to insert: ");
             			scanf("%d", &key);
-                		printf("Enter element to insert: ");
-                		scanf("%d", &item);
-                		insertAtAny(key, item);
-                		break;
+            			printf("Enter element to insert: ");
+            			scanf("%d", &item);
+            			insertAtAny(key, item);
+            			break;
+	        	
+	        	case 4:
+        			printf("Current List: ");
+            			traverseList();
+            			break;
+	        	
+	        	case 5:
+            			deleteAtFront();
+            			break;
 
-	               case 4:
-                                printf("Current List: ");
-                		traverseList();
-                		break;
-                       case 5:
-                       		deleteAtFront();
-                       		break;
-		       case 6:
-                       		deleteAtEnd();
-                      		break;
-                       case 7:
-				printf("Enter the key of the node to delete: ");
-    				scanf("%d", &key);
-				deleteAtAny(key);
-				break;
-	               case 8:
-           		        printf("Exiting...\n");
-                		exit(0);
-
-                       default:
-                                printf("Invalid choice! Please try again.\n");
-              }
-	}
-	return 0;
+	        	case 6:
+            			deleteAtEnd();
+            			break;
+	        	
+	        	case 7:
+            			printf("Enter the key of the node to delete: ");
+            			scanf("%d", &key);
+            			deleteAtAny(key);
+            			break;
+	        	
+	        	case 8:
+            			Search();
+            			break;
+	        	
+	        	case 9:
+            			printf("Exiting...\n");
+	            		exit(0);
+	        	default:
+        			printf("Invalid choice! Please try again.\n");
+    		}
+    	}
+	return (0);
 }
