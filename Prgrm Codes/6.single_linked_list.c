@@ -11,8 +11,8 @@ struct node *header = NULL;
 
 struct node* createNode(int item)
 {
-	struct node *newnode = (struct node *)malloc(sizeof(struct node));
-	newnode->data = item;
+		struct node *newnode = (struct node *)malloc(sizeof(struct node));
+		newnode->data = item;
     	newnode->link = NULL;
     	return newnode;
 }
