@@ -46,24 +46,23 @@ void dequeue()
 
 void display()
 {
-	int a=0;
-	if (FRONT == -1)
-        {
-        	printf("Queue is Empty\n");
-        	return;
-    	}
-        int i = FRONT;
-        printf("Queue elements: ");
-        while (a!=1)
-        {
-        	printf("%d ", Q[i]);
-        	if (i == REAR)
+    if (FRONT == -1) 
+	{
+        printf("Queue is Empty\n");
+        return;
+    }
+    int i = FRONT;
+    printf("Queue elements: ");
+    while (true) 
+	{
+        printf("%d ", Q[i]);
+        if (i == REAR) 
 		{
-                break;
-		}
-      		i = (i + 1) % MAX_SIZE;
+            break;
         }
-        printf("\n");
+        i = (i + 1) % MAX_SIZE;
+    }
+    printf("\n");
 }
 
 
