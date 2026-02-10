@@ -1,0 +1,53 @@
+-- 
+-- Roll No: 37
+-- Name: Mohamed Nihal
+-- Program: Practice Questions - 2
+-- 
+
+
+--
+-- Table structure for table department
+--
+
+create table department ( dno int, dname varchar(50), location varchar (50) default 'Main Block', constraint dep_dno_pky primary key(dno),constraint dep_dname_unq unique(dname) );
+
+--
+-- Table structure for table employee
+--
+
+create table employee ( empno int, name varchar(50) NOT NULL, gender char(1), salary decimal(7,2),email varchar(100), dno int, constraint empl_empno_pky primary key(empno),constraint empl_salary_check check(salary>0) ,constraint empl_email_unq unique(email) );
+
+
+--
+-- Dumping data for table employee
+--
+
+insert into employee values(1,"Alice","F",30000,"alice@gmail.com",10);
+insert into employee values(2,"Bob","M",40000,"bob@gmail.com",20);
+insert into employee values(3,"Charlie","M",45000,"charlie@gmail.com",30);
+insert into employee values(4,"David","M",35000,"david@gmail.com",40);
+insert into employee values(5,"Suzanne","F",50000,"suzanne@gmail.com",50);
+
+update employee set salary = salary * 1.10;
+delete from employee where salary < 35000;
+update employee set salary = salary + 5000 where dno = 30 AND salary < 50000;
+
+
+--
+-- Dumping data for table department
+--
+
+insert into department values(10,"HR","Block A");
+insert into department values(20,"Sales","Block B");
+insert into department values(30,"IT","Block C");
+insert into department values(40,"Administration","Block D");
+insert into department values(50,"Finance","Block E");
+
+update department set location = 'Block G' where dname = 'Sales';
+
+--
+-- SQl Query Statements
+--
+
+-- -----SQL query statments preceeded by the its question-------- # This line may be removed in the actual file
+-- -----Question number should be commented---------------#This line may be removed in the actual file

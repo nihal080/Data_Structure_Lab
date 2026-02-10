@@ -1,0 +1,60 @@
+-- 
+-- Roll No: 37
+-- Name: Mohamed Nihal
+-- Program: Practice Questions - 1
+-- 
+
+
+--
+-- Table structure for table department
+--
+
+create table department ( dno int, dname varchar(50), location varchar (50) default 'Main Block', constraint dep_dno_pky primary key(dno),constraint dep_dname_unq unique(dname) );
+
+--
+-- Table structure for table employee
+--
+
+create table employee ( empno int, name varchar(50) NOT NULL, gender char(1), salary decimal(7,2),email varchar(100), dno int, constraint empl_empno_pky primary key(empno),constraint empl_salary_check check(salary>0) ,constraint empl_email_unq unique(email) );
+
+alter table employee add phone int(10);
+
+alter table employee modify name varchar(100);
+
+alter table employee add constraint empl_phone_unq unique(phone);
+
+alter table employee add constraint empl_slry_check check(salary>=10000);
+
+alter table employee drop column email;
+
+alter table employee add constraint empl_comp_uniq_name_phone unique(name,phone);
+ 
+alter table employee rename column name to ename;
+
+rename table department to dept;
+
+
+--
+-- Dumping data for table <table_name>
+--
+
+-- --------insert/update statement commands----------- # This line may be removed in the actcual file
+
+--
+-- SQl Query Statements
+--
+
+-- -----SQL query statments preceeded by the its question-------- # This line may be removed in the actual file
+-- -----Question number should be commented---------------#This line may be removed in the actual file
+
+
+
+
+
+
+
+
+
+
+
+
