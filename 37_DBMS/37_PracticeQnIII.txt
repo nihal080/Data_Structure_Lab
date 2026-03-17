@@ -1,0 +1,83 @@
+-- 
+-- Roll No: 37
+-- Name: Mohamed Nihal
+-- Program: Practice Questions - III
+-- 
+
+--
+-- Table structure for table department
+--
+
+create table department ( dno int, dname varchar(50), location varchar (50) default 'Main Block', constraint dep_dno_pky primary key(dno),constraint dep_dname_unq unique(dname) );
+
+--
+-- Table structure for table employee
+--
+
+create table employee ( empno int, name varchar(50) NOT NULL, gender char(1), salary decimal(7,2),email varchar(100), dno int, constraint empl_empno_pky primary key(empno),constraint empl_salary_check check(salary>0) ,constraint empl_email_unq unique(email) );
+
+
+--
+-- Dumping data for table employee
+--
+
+insert into employee values(1,"Alice","F",20000,"alice@gmail.com",10);
+insert into employee values(2,"Bob","M",40000,"bob@gmail.com",20);
+insert into employee values(3,"Arjun","M",45000,"Arjun@gmail.com",30);
+insert into employee values(4,"David","M",35000,"david@gmail.com",40);
+insert into employee values(5,"Suzanne","F",25000,"suzanne@gmail.com",10);
+insert into employee values(6,"Nihal","M",65000,"nihal@gmail.com",50);
+insert into employee values(7,"Dhanush","M",25000,"dhanush@gmail.com",10);
+insert into employee values(8,"Masood","M",45000,"masood@gmail.com",30);
+insert into employee values(9,"Rahil","M",25000,"@gmail.com",10);
+
+
+--
+-- Dumping data for table department
+--
+
+insert into department values(10,"HR","Block A");
+insert into department values(20,"Sales","Block B");
+insert into department values(30,"IT","Block C");
+insert into department values(40,"Administration","Block D");
+insert into department values(50,"Finance","Block E");
+
+
+--
+-- SQl Query Statements
+--
+
+-- -----SQL query statments preceeded by the its question-------- # This line may be removed in the actual file
+-- -----Question number should be commented---------------#This line may be removed in the actual file
+
+
+-- Q1. Display all details of all employees.
+select * from employee;
+
+-- Q2. Display only the employee name and salary.
+select name,salary from employee;
+
+-- Q3. List all employees who belong to department number 10 and draw salary between 20,000 and 30,000.
+select * from employee where dno=%s and salary between %s and %s;
+
+-- Q4. Display employees whose name starts with the letter ‘A’.
+select * from employee where name like 'A%';
+
+-- Q5. Display employees who work in the department named ‘IT’.
+select * from employee join department on department.dno = employee.dno where dname = %s;
+
+-- Q6. List employees whose salary is greater than the average salary of all employees.
+select * from employee where salary > (select avg(salary) from employee);
+
+-- Q7. Display the number of employees in each department.
+select dno,count(name) as TotalCount from employee group by dno;
+
+-- Q8. List departments having more than 3 employees.
+select d.dno, d.dname, count(e.empno) as employee_count from department d join employee e on d.dno = e.dno group by d.dno, d.dname having count(e.empno) > 3;
+
+-- Q9. List departments where the average salary is greater than 30,000.
+select d.dno, d.dname, avg(e.salary) as average_salary from department d join employee e on d.dno = e.dno group by d.dno, d.dname having avg(e.salary) > %s ;
+
+-- Q10. Display the department name where the highest-paid employee work.
+select d.dname from employee e join department d on e.dno = d.dno where e.salary = (select max(salary) from employee);
+
